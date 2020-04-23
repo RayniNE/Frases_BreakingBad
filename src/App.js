@@ -1,5 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import styled from 'styled-components'; 
+import Frase from './components/Frase';
 
 const Boton = styled.button`
 
@@ -24,17 +25,24 @@ const Contenedor = styled.div`
 
 function App() {
 
-  const consultarApi = () => {
-    console.log("Con el lapiz no tu maldita madree");
+  const [frase, setFrase] = useState({});
+
+  const consultarApi = async () => {
+    const api = await fetch("http://breaking-bad-quotes.herokuapp.com/v1/quotes");
+    const frase = await api.json();
+    setFrase(frase[0])
   }
-
-
-
 
 
   return (
 
     <Contenedor>
+
+      <Frase
+      
+        frase={frase} 
+      
+      />
 
         <Boton
           onClick={consultarApi}
