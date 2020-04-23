@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components'; 
 import Frase from './components/Frase';
 
@@ -12,6 +12,12 @@ const Boton = styled.button`
   padding: 1rem 3rem;
   font-size: 2rem;
   border: 2px solid black;
+  transition: background-size, .8s ease;
+  
+  :hover{
+    cursor: pointer;
+    background-size: 400px;
+  }
 `;
 
 const Contenedor = styled.div`
@@ -20,7 +26,6 @@ const Contenedor = styled.div`
   align-items: center;
   padding-top: 5rem;
   flex-direction: column;
-
 `;
 
 function App() {
@@ -33,6 +38,10 @@ function App() {
     setFrase(frase[0])
   }
 
+  //Cargar una frase.
+  useEffect(() => {
+    consultarApi();
+  }, []);
 
   return (
 
